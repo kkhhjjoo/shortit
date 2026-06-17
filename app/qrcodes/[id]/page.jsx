@@ -1,3 +1,5 @@
+'use server';
+
 import { notFound, redirect } from 'next/navigation';
 import QRCodeForm, { QRCodeFormType } from '@/components/QRCodeForm';
 import styles from './QRCodeEditPage.module.css';
@@ -13,7 +15,7 @@ export default async function QRCodeEditPage({params}) {
   }
   const qrcode = JSON.parse(JSON.stringify(raw))
   async function handleSubmit(values) {
-    'use server';
+
     await dbConnect();
     await QRCode.findByIdAndUpdate(id, values);
     redirect('/qrcodes');
